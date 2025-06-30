@@ -121,12 +121,11 @@ const Dashboard = () => {
         </div>
 
         <button
-  onClick={handleSave}
-  className="mt-6 w-full text-yellow-400 border border-yellow-400 hover:text-white hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
->
-  Save
-</button>
-
+          onClick={handleSave}
+          className="mt-6 w-full text-yellow-400 border border-yellow-400 hover:text-white hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+        >
+          Save
+        </button>
       </div>
     </div>
   );

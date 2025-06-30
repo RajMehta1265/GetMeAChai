@@ -1,21 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FaGoogle, FaFacebook, FaApple, FaGithub } from "react-icons/fa";
 
-const Login = () => {
+export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/dashboard");
+    if (status === "authenticated" && session?.user?.email) {
+      router.replace("/dashboard");
     }
-  }, [status, router]);
+  }, [status, session, router]);
 
-  if (status === "loading") return null;
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600 text-lg">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center px-4 py-12">
@@ -60,6 +66,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

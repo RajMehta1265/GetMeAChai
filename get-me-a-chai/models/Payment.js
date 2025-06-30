@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
-const{Schema , model} = mongoose;
+const { Schema, model } = mongoose;
 
+// Define the Payment schema
 const PaymentSchema = new Schema({
-    name:{type :String , required :true},
-    to_user :{type:String , required:true},
-    oid:{type:String , required:true},
-    message:{type:String},
-    amount:{type:Number , required:true},
-    createdAt:{type:String , default:Date.now},
-    updatedAt:{type:String , default:Date.now},
-    done:{type:Boolean,default:false},
+  name: { type: String, required: true },
+  to_user: { type: String, required: true },
+  oid: { type: String, required: true }, // order ID
+  message: { type: String },
+  amount: { type: Number, required: true },
+  createdAt: { type: Date, default: Date.now },  // Use Date type
+  updatedAt: { type: Date, default: Date.now },  // Use Date type
+  done: { type: Boolean, default: false },
 });
 
-const Payment = model("Payment" , PaymentSchema);
-export default mongoose.models.Payment || Payment;
+// Only create model if not already created (avoids overwrite issues during hot reloads)
+const Payment = mongoose.models.Payment || model("Payment", PaymentSchema);
+
+export default Payment;
